@@ -1,0 +1,45 @@
+---
+name: 'lydteamet-helm-pull-action'
+description: 'Pulls a helm chart from azurecr'
+inputs:
+  name:
+    description: Name of chart
+    required: true
+
+  version:
+    description: Chart semantic version
+    required: true
+
+  repository:
+    description: Repository name for the chart 
+    required: true
+    default: 'lydteamet-helm-test'
+
+  registry:
+    description: Registry to push to
+    required: true
+    default: plattform.azurecr.io
+
+  username:
+    description: Username for registry
+    required: true
+
+  password:
+    description: Password for registry
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+
+    - name: Set variables
+      shell: bash
+      run: export HELM_EXPERIMENTAL_OCI=1
+
+    - name: Login to registry
+      shell: bash
+      run:  echo ${{ inputs.password }} | helm registry login -u ${{ inputs.username }} --password-stdin ${{ inputs.registry }}
+
+    - name: Pull chart
+      shell: bash
+      run: helm pull oci://${{ inputs.registry }}/${{ inputs.repository }} --version ${{ inputs.version }}
