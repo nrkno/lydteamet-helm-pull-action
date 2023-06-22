@@ -1,19 +1,17 @@
 ---
 name: 'lydteamet-helm-pull-action'
 description: 'Pulls a helm chart from azurecr'
-inputs:
-  name:
-    description: Name of chart
-    required: true
 
-  version:
-    description: Chart semantic version
-    required: true
+inputs:
 
   repository:
     description: Repository name for the chart 
     required: true
-    default: 'lydteamet-helm-test'
+    default: 'lydteamet-helm-publish-test'
+
+  version:
+    description: Chart semantic version
+    required: true
 
   registry:
     description: Registry to push to
