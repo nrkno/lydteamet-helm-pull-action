@@ -17,7 +17,7 @@ jobs:
 
       - uses: nrkno/lydteamet-helm-pull-action@master
         with:
-          name: lydteamet-test-pull-action
+          name: lydteamet-test-publish-action
           version: 0.0.8
           registry: ${{ secrets.PLATTFORM_CONTAINER_REGISTRY }}
           username: ${{ secrets.PLATTFORM_ACR_PUSH_CLIENT_ID }}
