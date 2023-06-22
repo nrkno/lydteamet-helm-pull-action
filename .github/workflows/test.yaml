@@ -13,8 +13,6 @@ jobs:
 
     steps:
 
-      - uses: actions/checkout@v3
-
       - uses: nrkno/lydteamet-helm-pull-action@master
         with:
           repository: lydteamet-helm-test
