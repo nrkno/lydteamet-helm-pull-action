@@ -23,7 +23,3 @@ jobs:
           registry: ${{ secrets.PLATTFORM_CONTAINER_REGISTRY }}
           username: ${{ secrets.PLATTFORM_ACR_PUSH_CLIENT_ID }}
           password: ${{ secrets.PLATTFORM_ACR_PUSH_CLIENT_SECRET }}
-
-      - name: List files
-        shell: bash
-        run: ls -l
