@@ -13,7 +13,6 @@ inputs:
   repository:
     description: Repository name for the chart 
     required: true
-    default: 'lydteamet-helm-test'
 
   registry:
     description: Registry to push to
@@ -42,4 +41,4 @@ runs:
 
     - name: Pull chart
       shell: bash
-      run: helm pull oci://${{ inputs.registry }}/${{ inputs.repository }} --version ${{ inputs.version }}
+      run: helm pull oci://${{ inputs.registry }}/${{ inputs.repository }}/${{ inputs.chart }} --version ${{ inputs.version }}
