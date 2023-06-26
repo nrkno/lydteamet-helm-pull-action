@@ -31,14 +31,18 @@ runs:
   using: 'composite'
   steps:
 
-    - name: Set variables
-      shell: bash
-      run: export HELM_EXPERIMENTAL_OCI=1
+    - uses: azure/setup-helm@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Login to registry
       shell: bash
-      run:  echo ${{ inputs.password }} | helm registry login -u ${{ inputs.username }} --password-stdin ${{ inputs.registry }}
+      run:  |
+        export HELM_EXPERIMENTAL_OCI=1
+        echo ${{ inputs.password }} | helm registry login -u ${{ inputs.username }} --password-stdin ${{ inputs.registry }}
 
     - name: Pull chart
       shell: bash
-      run: helm pull oci://${{ inputs.registry }}/${{ inputs.repository }}/${{ inputs.name }} --version ${{ inputs.version }}
+      run: |
+        export HELM_EXPERIMENTAL_OCI=1
+        helm pull oci://${{ inputs.registry }}/${{ inputs.repository }}/${{ inputs.name }} --version ${{ inputs.version }}
