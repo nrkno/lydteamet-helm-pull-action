@@ -32,8 +32,8 @@ runs:
   steps:
 
     - uses: azure/setup-helm@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Login to registry
       shell: bash
