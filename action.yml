@@ -2,7 +2,7 @@
 name: 'lydteamet-helm-pull-action'
 description: 'Pulls a helm chart from azurecr'
 inputs:
-  chart:
+  name:
     description: Name of chart
     required: true
 
@@ -41,4 +41,4 @@ runs:
 
     - name: Pull chart
       shell: bash
-      run: helm pull oci://${{ inputs.registry }}/${{ inputs.repository }}/${{ inputs.chart }} --version ${{ inputs.version }}
+      run: helm pull oci://${{ inputs.registry }}/${{ inputs.repository }}/${{ inputs.name }} --version ${{ inputs.version }}
