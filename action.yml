@@ -27,13 +27,17 @@ inputs:
     description: Password for registry
     required: true
 
+  github_token:
+    description: Github token passed along
+    required: true
+
 runs:
   using: 'composite'
   steps:
 
     - uses: azure/setup-helm@v3
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ inputs.github_token }}
 
     - name: Login to registry
       shell: bash
